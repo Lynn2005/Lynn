@@ -2,8 +2,8 @@ import streamlit as st
 import subprocess, tempfile, os, re, uuid
 from pathlib import Path
 
-st.set_page_config(page_title="Yoon Recap", page_icon="🎬", layout="centered")
-WORK=Path(tempfile.gettempdir())/"yoon_recap"; WORK.mkdir(exist_ok=True)
+st.set_page_config(page_title="Lynn Recap", page_icon="🎬", layout="centered")
+WORK=Path(tempfile.gettempdir())/"lynn_recap"; WORK.mkdir(exist_ok=True)
 
 def ffmpeg():
     import imageio_ffmpeg
@@ -60,7 +60,7 @@ def render(video,voice,srt):
     cmd+=["-map","0:v:0","-map","1:a:0" if voice else "0:a:0?","-c:v","libx264","-preset","veryfast","-crf","25","-c:a","aac","-b:a","128k","-shortest",str(out)]
     run(cmd); return out
 
-st.title("🎬 Yoon Recap")
+st.title("🎬 Lynn Recap")
 st.caption("Streamlit Edition")
 with st.sidebar:
     key=st.text_input("Gemini API Key",type="password")
@@ -119,4 +119,4 @@ if video:
             st.download_button("📥 Final MP4 Download",data,"yoon_recap_final.mp4","video/mp4",use_container_width=True)
         except Exception as e: st.error(f"Render Error: {e}")
 
-st.divider(); st.caption("Yoon Recap • Streamlit")
+st.divider(); st.caption("Lynn Recap • Streamlit")
